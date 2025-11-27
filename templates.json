@@ -1,0 +1,42 @@
+[
+  {
+    "type": 1,
+    "title": "FileRise",
+    "name": "filerise",
+    "description": "Self-hosted web file manager with WebDAV, ACLs, OnlyOffice, and optional Pro client portals.",
+    "image": "error311/filerise-docker:latest",
+    "env": [
+      {
+        "name": "TIMEZONE",
+        "label": "Timezone",
+        "default": "America/New_York"
+      },
+      {
+        "name": "PERSISTENT_TOKENS_KEY",
+        "label": "Persistent tokens key",
+        "default": "default_please_change_this_key"
+      }
+    ],
+    "ports": [
+      {
+        "container": 80,
+        "host": 8080
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/var/www/uploads",
+        "bind": "/data/filerise/uploads"
+      },
+      {
+        "container": "/var/www/users",
+        "bind": "/data/filerise/users"
+      },
+      {
+        "container": "/var/www/metadata",
+        "bind": "/data/filerise/metadata"
+      }
+    ],
+    "restart_policy": "always"
+  }
+]
